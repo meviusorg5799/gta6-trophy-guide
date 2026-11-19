@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida — GTA VI Trophy Guide &amp; Tracker</title>
+<meta name="description" content="A complete offline guide and tracker for the 55 PlayStation 5 trophies of Grand Theft Auto VI: checklist, roadmap to the platinum, missables and cited guides.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Grand Theft Auto VI &middot; PlayStation 5</p>
+    <h1>Leonida Trophy Guide</h1>
+    <p class="tagline">Every one of the 55 trophies, a roadmap to the platinum, and a checklist that remembers your progress — all offline.</p>
+    <div class="stats" id="stats" aria-label="Trophy totals"></div>
+    <div class="progress-wrap">
+      <div class="progress-label"><span id="progress-text">0 of 55 earned</span><span id="points-text">0 / 1,350 points</span></div>
+      <div class="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="55" aria-valuenow="0" id="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Guide sections">
+  <button type="button" class="tab active" data-tab="checklist">Checklist</button>
+  <button type="button" class="tab" data-tab="roadmap">Roadmap to Platinum</button>
+  <button type="button" class="tab" data-tab="missables">Missables</button>
+  <button type="button" class="tab" data-tab="sources">Sources</button>
+</nav>
+
+<main>
+  <section id="tab-checklist" class="tab-panel">
+    <div class="controls" role="search">
+      <input type="search" id="search" placeholder="Search trophies by name or description…" aria-label="Search trophies">
+      <label class="control">Grade
+        <select id="grade-filter" aria-label="Filter by grade">
+          <option value="all">All grades</option>
+          <option value="platinum">Platinum</option>
+          <option value="gold">Gold</option>
+          <option value="silver">Silver</option>
+          <option value="bronze">Bronze</option>
+        </select>
+      </label>
+      <label class="control">Kind
+        <select id="kind-filter" aria-label="Filter by kind">
+          <option value="all">All kinds</option>
+          <option value="story">Story</option>
+          <option value="collectible">Collectible</option>
+          <option value="combat">Combat</option>
+          <option value="exploration">Exploration</option>
+          <option value="misc">Activities &amp; misc</option>
+        </select>
+      </label>
+      <label class="check"><input type="checkbox" id="missable-only"> Missable only</label>
+      <label class="check"><input type="checkbox" id="hide-earned"> Hide earned</label>
+      <button type="button" id="spoiler-toggle" class="btn" aria-pressed="true">Spoiler shield: on</button>
+      <button type="button" id="export-btn" class="btn">Export progress</button>
+      <button type="button" id="import-btn" class="btn">Import progress</button>
+      <input type="file" id="import-file" accept="application/json,.json" hidden>
+      <button type="button" id="reset-btn" class="btn danger">Reset</button>
+    </div>
+    <p class="spoiler-note" id="spoiler-note">Spoiler shield is on: hidden (secret) trophies stay unnamed until you earn them. Turn it off to see the full list.</p>
+    <div class="layout">
+      <div class="list-col">
+        <p class="result-count" id="result-count"></p>
+        <div class="trophy-grid" id="trophy-list"></div>
+      </div>
+      <aside class="detail-col" id="detail" aria-live="polite"></aside>
+    </div>
+  </section>
+
+  <section id="tab-roadmap" class="tab-panel" hidden>
+    <h2>Roadmap to the platinum</h2>
+    <p class="intro">Fifty-five trophies, one order. The phases below are built from the official descriptions: story first, then the side strands, then activities, then collectibles, then the money cleanup. The platinum pops when the other 54 are done.</p>
+    <div id="roadmap"></div>
+  </section>
+
+  <section id="tab-missables" class="tab-panel" hidden>
+    <h2>Missable trophies</h2>
+    <p class="intro">“Missable” here means one thing only: the trophy belongs to a single story mission or chapter, so it can only pop while that moment is live. Nothing in this list is permanently missable if mission replay exists — confirm in game whether a mission can be replayed — but do these when they come up rather than leaving them for later. Everything else can be earned in free roam after the story.</p>
+    <div id="missables"></div>
+  </section>
+
+  <section id="tab-sources" class="tab-panel" hidden>
+    <h2>Sources</h2>
+    <p class="intro">Every trophy's name, description, grade, points and hidden status come from the official PlayStation 5 list. Every guide on this site is written in its own words for this entry; where a guide uses a count or a fact from another guide, the guide names it. Nothing here is copied from another guide.</p>
+    <ul class="source-list">
+      <li><strong>Official trophy list (PlayStation 5)</strong> — names, descriptions, grades, points and hidden flags for all 55 trophies, as listed by Exophase and PSNProfiles. This is the source for every trophy card on this site and for the counts in the guides (42 Shooting Range challenges, 14 Top Fun locations, 18 meditation spots, 52 areas of Leonida, 9 gangs, 8 garage properties, 9 activity types, the count of 500 tracked for “Actions Speak Louder”).</li>
+      <li><strong>PowerPyx, via sixshore.com</strong> — stunt types for “Cunning Stunts”, the 18 collectible card sets for “Don't Touch My Deck”, the 8 bank vaults and the Chapter 4 opener for “Maximum Withdrawal”, the activity examples for “Master of None”, and the note that the exact stranger questlines for “Strangers &amp; Freaks” are still being confirmed.</li>
+      <li><strong>Insider Gaming, via sixshore.com</strong> — the count of 35 tasks on the 100% completion checklist for “A Long Road”.</li>
+      <li><strong>sixshore.com — “GTA 6 Trophy and Achievement List: All 55, Missables and Roadmap”</strong> — <span class="url">https://sixshore.com/gta-6/guides/trophies-and-achievements/</span> — independent guide listing the same 55 trophies; used as a cross-check for counts and facts, never copied.</li>
+      <li><strong>gtavicecityhub.com — “GTA 6 Achievements and Trophies”</strong> — <span class="url">https://www.gtavicecityhub.com/achievements</span> — independent guide; cited for the note that “The Truth Is Out There” is not yet known.</li>
+      <li><strong>gtasixlnsider.com — “GTA 6 Trophy List: All 55 Trophies &amp; Achievements, Platinum Guide”</strong> — <span class="url">https://gtasixlnsider.com/gta-6-trophies/</span> — independent guide listing the same 55; further reading.</li>
+    </ul>
+    <p class="intro">A note on honesty: where the official description gives no location or step, the guide says so and marks the step “confirm in game” instead of inventing a place or a mission name. No Rockstar logo or official artwork appears anywhere on this site; the look is our own.</p>
+  </section>
+</main>
+
+<footer>
+  <p>Leonida Trophy Guide — an unofficial fan guide. Grand Theft Auto and GTA are trademarks of Rockstar Games; this site is not affiliated with or endorsed by Rockstar Games or Sony Interactive Entertainment. Trophy names and descriptions are shown as PlayStation publishes them. Works fully offline; progress is stored only in your browser.</p>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
