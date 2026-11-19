@@ -1,21 +1,18 @@
-// A tiny static server for this guide's app/ folder, for local trying only.
-// Run `node serve.ts` and open http://localhost:8080 (or --port <n>).
-// It serves files from app/ and nothing else, and refuses paths that escape it.
-import { createReadStream, statSync } from 'node:fs';
+// Tiny static server for local preview of the Leonida Trophy Guide.
+// Serves app/ at the root on http://localhost:8080 — standard library only.
 import { createServer } from 'node:http';
-import { extname, join, normalize, resolve, sep } from 'node:path';
+import { readFileSync, existsSync, statSync } from 'node:fs';
+import { join, extname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const root = resolve(fileURLToPath(new URL('./app', import.meta.url)));
-const portArg = process.argv.indexOf('--port');
-const wanted = portArg === -1 ? 8080 : Number(process.argv[portArg + 1]);
-const port = Number.isInteger(wanted) && wanted > 0 && wanted < 65536 ? wanted : 8080;
+const APP_DIR = resolve(fileURLToPath(new URL('./app', import.meta.url)));
+const PORT = 8080;
 
-const TYPES = {
+const TYPES: Record<string, string> = {
   '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
   '.mjs': 'text/javascript; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',
@@ -23,35 +20,18 @@ const TYPES = {
   '.svg': 'image/svg+xml',
 };
 
-createServer((request, response) => {
-  let pathname = '/';
-  try {
-    pathname = decodeURIComponent(new URL(request.url ?? '/', 'http://localhost').pathname);
-  } catch {
-    response.writeHead(400).end('bad request');
+const server = createServer((req, res) => {
+  const path = decodeURIComponent(new URL(req.url ?? '/', 'http://localhost').pathname);
+  const file = join(APP_DIR, path === '/' ? 'index.html' : path);
+  if (!file.startsWith(APP_DIR) || !existsSync(file) || !statSync(file).isFile()) {
+    res.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' });
+    res.end('not found\n');
     return;
   }
-  if (pathname.endsWith('/')) pathname += 'index.html';
-  const file = resolve(join(root, normalize(pathname)));
-  if (file !== root && !file.startsWith(root + sep)) {
-    response.writeHead(403).end('forbidden');
-    return;
-  }
-  let size;
-  try {
-    const info = statSync(file);
-    if (!info.isFile()) throw new Error('not a file');
-    size = info.size;
-  } catch {
-    response.writeHead(404).end('not found');
-    return;
-  }
-  response.writeHead(200, {
-    'content-type': TYPES[extname(file).toLowerCase()] ?? 'application/octet-stream',
-    'content-length': size,
-    'cache-control': 'no-store',
-  });
-  createReadStream(file).pipe(response);
-}).listen(port, '127.0.0.1', () => {
-  console.log(`Leonida Trophy Guide is on http://localhost:${port}`);
+  res.writeHead(200, { 'content-type': TYPES[extname(file)] ?? 'application/octet-stream' });
+  res.end(readFileSync(file));
+});
+
+server.listen(PORT, () => {
+  console.log(`Leonida Trophy Guide at http://localhost:${PORT}/`);
 });

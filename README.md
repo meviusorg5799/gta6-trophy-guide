@@ -2,33 +2,12 @@
 [![rank](https://make.fun/badge/gta6-trophy-guide-01/meviusorg5799/gta6-trophy-guide/rank.svg)](https://make.fun/bounty/gta6-trophy-guide-01)
 [![reward](https://make.fun/badge/gta6-trophy-guide-01/meviusorg5799/gta6-trophy-guide/reward.svg)](https://make.fun/bounty/gta6-trophy-guide-01)
 
-# Leonida Trophy Guide — GTA VI
+# Leonida Trophy Guide — GTA VI · 55 PS5 Trophies
 
-Entry for the [make.fun bounty gta6-trophy-guide-01](https://make.fun/bounty/gta6-trophy-guide-01): build the best GTA 6 trophy guide.
+Bounty: [Build the best GTA 6 trophy guide](https://make.fun/bounty/gta6-trophy-guide-01)
 
-An offline guide and tracker for all 55 PlayStation 5 trophies of Grand Theft Auto VI (1 platinum, 2 gold, 6 silver, 46 bronze; 28 hidden until earned). Every trophy is shown with its official name, description and grade, a guide written in our own words with its source named, a checklist that saves progress in the browser, filters by grade and kind, a spoiler shield that hides story and secret trophies until earned, export and import of progress, a five-phase roadmap to the platinum, and a missables list built from the official descriptions.
+An offline guide and tracker for all 55 PlayStation 5 trophies of Grand Theft Auto VI. Every trophy is shown with its official name, description and grade as PlayStation publishes them, plus a guide in its own words that names its sources, a five-phase roadmap to the platinum, and a missable flag for each of the 17 single-mission trophies.
 
-## Try it
+The tracker saves your checklist in the browser (localStorage), exports progress to a file and imports it back, filters by grade and kind, searches by name or description, and hides secret trophies behind a spoiler shield until they are earned.
 
-```sh
-node serve.ts
-# open http://localhost:8080
-```
-
-The app is plain static files under `app/` — no build step, no network requests at run time. It works with the network off.
-
-## Hand it in
-
-```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
-```
-
-`main.ts` (Node 22, standard library only) copies `app/` and `screenshots/` to the output directory and writes `dossier.json` with the vendored make.fun library in `vendor/makefun-frontend.ts`.
-
-## Sources
-
-Trophy names, descriptions, grades, points and hidden flags come from the official PlayStation 5 list, as listed by Exophase and PSNProfiles. Counts and facts drawn from other guides are named beside the trophy they belong to (see the Sources tab in the app). Guides are written in our own words; nothing is copied from another guide. No Rockstar logo or official artwork is used.
-
-## License
-
-MIT — see [LICENSE](LICENSE).
+Run it locally with `node serve.ts` (serves `app/` at http://localhost:8080), or open `app/index.html` through any static server. The entrypoint is `main.ts` (Node 22, standard library only): it copies `app/` and `screenshots/` to the output directory and writes `dossier.json`.
